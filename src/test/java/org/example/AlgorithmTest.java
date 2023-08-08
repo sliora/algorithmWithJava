@@ -3,6 +3,7 @@ package org.example;
 import org.assertj.core.api.Assertions;
 import org.example.leetcode.HIndex;
 import org.example.leetcode.KthSmallestElementInSortedMatrix;
+import org.example.leetcode.LRUCache;
 import org.example.leetcode.LinkedListCycle;
 import org.example.leetcode.LinkedListCycle.ListNode;
 import org.junit.jupiter.api.Test;
@@ -47,5 +48,19 @@ class AlgorithmTest {
         node5.next = node6;
 
         assertFalse(solution.hasCycle(node5));
+    }
+
+    @Test
+    public void testLRUCache() {
+        LRUCache lruCache = new LRUCache(2);
+        lruCache.put(1, 1);
+        lruCache.put(2, 2);
+        assertEquals(1, lruCache.get(1)); // Returns 1
+        lruCache.put(3, 3); // LRU key was 2, evicts key 2
+        assertEquals(-1, lruCache.get(2)); // Returns -1 (not found)
+        lruCache.put(4, 4); // LRU key was 1, evicts key 1
+        assertEquals(-1, lruCache.get(1)); // Returns -1 (not found)
+        assertEquals(3, lruCache.get(3)); // Returns 3
+        assertEquals(4, lruCache.get(4)); // Returns 4
     }
 }
