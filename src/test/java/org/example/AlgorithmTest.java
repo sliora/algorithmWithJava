@@ -1,13 +1,13 @@
 package org.example;
 
 import org.assertj.core.api.Assertions;
-import org.example.leetcode.HIndex;
-import org.example.leetcode.KthSmallestElementInSortedMatrix;
-import org.example.leetcode.LRUCache;
-import org.example.leetcode.LinkedListCycle;
+import org.example.leetcode.*;
 import org.example.leetcode.LinkedListCycle.ListNode;
 import org.junit.jupiter.api.Test;
 
+import java.util.Stack;
+
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AlgorithmTest {
@@ -23,8 +23,8 @@ class AlgorithmTest {
     @Test
     void testKthSmallestElementInSortedMatrix() {
         KthSmallestElementInSortedMatrix kthSmallestElementInSortedMatrix = new KthSmallestElementInSortedMatrix();
-        Assertions.assertThat(kthSmallestElementInSortedMatrix.findKthSmallest(new int[][]{{1,5,9}, {10,11,13}, {12,13,15}},8)).isEqualTo(13);
-        Assertions.assertThat(kthSmallestElementInSortedMatrix.findKthSmallest(new int[][]{{-5}},1)).isEqualTo(-5);
+        assertThat(kthSmallestElementInSortedMatrix.findKthSmallest(new int[][]{{1,5,9}, {10,11,13}, {12,13,15}},8)).isEqualTo(13);
+        assertThat(kthSmallestElementInSortedMatrix.findKthSmallest(new int[][]{{-5}},1)).isEqualTo(-5);
     }
 
     @Test
@@ -62,5 +62,45 @@ class AlgorithmTest {
         assertEquals(-1, lruCache.get(1)); // Returns -1 (not found)
         assertEquals(3, lruCache.get(3)); // Returns 3
         assertEquals(4, lruCache.get(4)); // Returns 4
+    }
+
+    @Test
+    public void testGenerateParentheses() {
+        GenerateParentheses generateParentheses = new GenerateParentheses();
+        System.out.println("generateParentheses.generateParenthesis(3) = " + generateParentheses.generateParenthesis(3));
+    }
+    
+    @Test
+    void stackTest() {
+        Stack<int[]> ints = new Stack<>();
+
+        ints.push(new int[]{100, 1});
+        ints.push(new int[]{80, 1});
+        ints.push(new int[]{60, 1});
+        ints.push(new int[]{70, 1});
+        ints.push(new int[]{60, 1});
+        ints.push(new int[]{75, 1});
+        ints.push(new int[]{85, 1});
+
+
+        System.out.println("ints.peek()[0] = " + ints.peek()[0]); //peek 은 마지막 요소인듯?
+        System.out.println("ints.get(ints.size() - 1)[0] = " + ints.get(ints.size() - 1)[0]); // == peek
+        System.out.println("ints.stream().count() = " + ints.size());
+        System.out.println("ints.pop()[1] = " + ints.pop()[1]);
+        System.out.println("ints.pop()[1] = " + ints.pop()[1]);
+        System.out.println("ints.pop()[1] = " + ints.pop()[1]);
+    }
+
+    @Test
+    void OnlineStockSpanTest() {
+        OnlineStockSpan onlineStockSpan = new OnlineStockSpan();
+
+        assertThat(onlineStockSpan.next(100)).isEqualTo(1);
+        assertThat(onlineStockSpan.next(80)).isEqualTo(1);
+        assertThat(onlineStockSpan.next(60)).isEqualTo(1);
+        assertThat(onlineStockSpan.next(70)).isEqualTo(2);
+        assertThat(onlineStockSpan.next(60)).isEqualTo(1);
+        assertThat(onlineStockSpan.next(75)).isEqualTo(4);
+        assertThat(onlineStockSpan.next(85)).isEqualTo(6);
     }
 }
