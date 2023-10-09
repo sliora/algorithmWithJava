@@ -5,8 +5,9 @@ import org.example.leetcode.*;
 import org.example.leetcode.LinkedListCycle.ListNode;
 import org.junit.jupiter.api.Test;
 
-import java.util.Stack;
+import java.util.*;
 
+import static javax.swing.UIManager.put;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -103,4 +104,15 @@ class AlgorithmTest {
         assertThat(onlineStockSpan.next(75)).isEqualTo(4);
         assertThat(onlineStockSpan.next(85)).isEqualTo(6);
     }
+
+    @Test
+    void FindTheTownJudgeTest() {
+        FindTheTownJudge findTheTownJudge = new FindTheTownJudge();
+
+        // Example test
+        int[][] trust = {{1, 3}, {2, 3}};
+        int N = 3;
+        System.out.println(findTheTownJudge.findJudge(N, trust));  // Exp
+    }
+
 }
