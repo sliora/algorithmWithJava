@@ -106,6 +106,157 @@ class AlgorithmTest {
     }
 
     @Test
+    void DailyTemperaturesTest() {
+        DailyTemperatures dailyTemperatures = new DailyTemperatures();
+        int[] temperatures = {73, 74, 75, 71, 69, 72, 76, 75};
+
+        int[] ints = dailyTemperatures.dailyTemperatures(temperatures);
+
+        for (int anInt : ints) {
+            System.out.println("anInt = " + anInt);
+        }
+    }
+
+    @Test
+    void name() {
+
+        String a = "aBcDeFg";
+        StringBuilder result = new StringBuilder();
+
+        char[] charArray = a.toCharArray();
+
+
+        for (char c : charArray) {
+            if(Character.isLowerCase(c)) {
+                result.append(Character.toUpperCase(c));
+            } else {
+                result.append(Character.toLowerCase(c));
+            }
+
+        }
+
+        System.out.println("result = " + result);
+    }
+
+    @Test
+    void 문자열_돌리기() {
+        String a = "abced";
+
+        for(Character c : a.toCharArray()) {
+            System.out.println(c);
+        }
+    }
+
+    @Test
+    void 홀짝_구분하기() {
+        int n = 100;
+
+        if (n % 2 == 0) {
+            System.out.print(n + " is even");
+        } else {
+            System.out.print(n + " is odd");
+        }
+    }
+
+    @Test
+    void 문자열_겹쳐쓰기() {
+        String my_string = "He11oWor1d";
+        String overwrite_string = "lloWorl";
+        int s = 2;
+
+        String before = my_string.substring(0, s);
+        String after = my_string.substring(s + overwrite_string.length());
+
+
+        System.out.print(before + overwrite_string + after);
+    }
+
+    @Test
+    void letterCombinations() {
+        String digits = "23";
+
+        Map<Character, String> phoneMap = new HashMap<>() {{
+            put('2', "abc");
+            put('3', "def");
+            put('4', "ghi");
+            put('5', "jkl");
+            put('6', "mno");
+            put('7', "pqrs");
+            put('8', "tuv");
+            put('9', "wxyz");
+        }};
+
+        List<String> combinations = new ArrayList<>();
+//        if (digits.length() == 0) {
+//            return combinations;
+//        }
+
+        combinations.add("");
+        for (char digit : digits.toCharArray()) {
+            List<String> temp = new ArrayList<>();
+            for (String combo : combinations) {
+                for (char letter : phoneMap.get(digit).toCharArray()) {
+                    temp.add(combo + letter);
+                }
+            }
+            combinations = temp;
+        }
+        //return combinations;
+        System.out.println("combinations = " + combinations);
+    }
+
+    @Test
+    void mergeTwoSortedLists() {
+        ListNodeTest firstNode1 = new ListNodeTest(1);
+        ListNodeTest firstNode2 = new ListNodeTest(2);
+        ListNodeTest firstNode3 = new ListNodeTest(4);
+        firstNode1.next = firstNode2;
+        firstNode2.next = firstNode3;
+
+
+        ListNodeTest secondNode1 = new ListNodeTest(1);
+        ListNodeTest secondNode2 = new ListNodeTest(3);
+        ListNodeTest secondNode3 = new ListNodeTest(4);
+        secondNode1.next = secondNode2;
+        secondNode2.next = secondNode3;
+
+        mergeTwoLists(firstNode1, secondNode1);
+
+    }
+
+    public ListNodeTest mergeTwoLists(ListNodeTest list1, ListNodeTest list2) {
+        if (list1 == null) {
+            return list2;
+        }
+        if (list2 == null) {
+            return list1;
+        }
+
+        if (list1.val < list2.val) {
+            list1.next = mergeTwoLists(list1.next, list2);
+            return list1;
+        } else {
+            list2.next = mergeTwoLists(list1, list2.next);
+            return list2;
+        }
+    }
+
+
+    public class ListNodeTest {
+        int val;
+        ListNodeTest next;
+        ListNodeTest() {}
+        ListNodeTest(int val) {
+            this.val = val;
+        }
+        ListNodeTest(int val, ListNodeTest next) {
+            this.val = val; this.next = next;
+        }
+
+    }
+
+
+    @Test
     void FindTheTownJudgeTest() {
         FindTheTownJudge findTheTownJudge = new FindTheTownJudge();
 
