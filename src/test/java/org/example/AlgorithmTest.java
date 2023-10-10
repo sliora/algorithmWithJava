@@ -266,4 +266,40 @@ class AlgorithmTest {
         System.out.println(findTheTownJudge.findJudge(N, trust));  // Exp
     }
 
+
+    @Test
+    void numOfIslandsTest() {
+        NumOfIslands numOfIslands = new NumOfIslands();
+
+        char[][] grid = {
+                {'1', '1', '0', '0', '0'},
+                {'1', '1', '0', '0', '0'},
+                {'0', '0', '1', '0', '0'},
+                {'0', '0', '0', '1', '1'}
+        };
+        System.out.println(numOfIslands.numIslands(grid));  // Expected output: 3
+    }
+
+
+    @Test
+    void countSubIslandsTest() {
+        CountSubIslands countSubIslands = new CountSubIslands();
+
+        int[][] grid1 = {
+                {1,0,1,0,0},
+                {1,0,1,0,1},
+                {0,0,0,0,0},
+                {1,0,1,0,0},
+                {1,0,1,1,1}
+        };
+        int[][] grid2 = {
+                {1,1,1,0,0},
+                {0,0,1,0,1},
+                {0,0,0,0,0},
+                {1,0,0,1,0},
+                {1,0,1,0,1}
+        };
+        System.out.println(countSubIslands.countSubIslands(grid1, grid2));  // Expected output: 3
+    }
+
 }
