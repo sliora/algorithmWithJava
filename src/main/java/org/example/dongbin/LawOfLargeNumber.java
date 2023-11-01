@@ -11,20 +11,17 @@ public class LawOfLargeNumber {
         sc.nextLine();
 
         String[] input = sc.nextLine().split(" ");
-        int[] intInput = Arrays.stream(input)
-                .mapToInt(Integer::parseInt)
-                .boxed()
-                .sorted(Collections.reverseOrder())
-                .mapToInt(Integer::intValue)
-                .toArray();
+
+        int[] intInput = Arrays.stream(input).mapToInt(Integer::parseInt).toArray();
+        Arrays.sort(intInput);
 
         int result = 0;
 
         for (int i = 1; i <= M; i ++) {
             if(i % K == 0) {
-                result += intInput[1];
+                result += intInput[N - 2];
             } else {
-                result += intInput[0];
+                result += intInput[N - 1];
             }
         }
 
