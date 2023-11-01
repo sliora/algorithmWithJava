@@ -4,41 +4,37 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class SecretMenu {
-    static public String secretMenu() {
+게    static public void secretMenu() {
         Scanner sc = new Scanner(System.in);
 
-        int M = sc.nextInt();
-        int N = sc.nextInt();
-        int K = sc.nextInt();
+        int M = sc.nextInt(); // 비밀 레시피 length
+        int N = sc.nextInt(); // 사용자 입력 length
+        int K = sc.nextInt(); // K이하의 숫자만 나옴 5 -> 1~5
         sc.nextLine();
 
-        int[] recipe = new int[M];
-        for (int i=0; i<M; i++) {
-            recipe[i] = sc.nextInt();
-        }
+        String[] secretKeyStr = sc.nextLine().split(" ");
+        int[] secretKey = Arrays.stream(secretKeyStr).mapToInt(Integer::parseInt).toArray();
+        String[] userKeyStr = sc.nextLine().split(" ");
+        int[] userKey = Arrays.stream(userKeyStr).mapToInt(Integer::parseInt).toArray();
 
-        int[] intInput = new int[N];
+
+        int secretKeyCount = 0;
+
         for (int i = 0; i < N; i++) {
-            intInput[i] = sc.nextInt();
-        }
-
-        int recipeIndex = 0;
-
-        for (int i=0; i< N; i++) {
-            if (intInput[i] == recipe[recipeIndex]) {
-                recipeIndex++;
-                if(recipeIndex == M) {
+            if(userKey[i] == secretKey[secretKeyCount]) {
+                secretKeyCount++;
+                if(secretKeyCount == M) {
                     System.out.print("secret");
-                    return "secret";
+                    return;
                 }
             } else {
-                recipeIndex = 0;
+                if(secretKeyCount > 0) {
+                    i = i - secretKeyCount;
+                    secretKeyCount = 0;
+                }
             }
         }
-
-
         System.out.print("normal");
-        return "normal";
     }
 
 }
