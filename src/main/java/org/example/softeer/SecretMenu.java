@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class SecretMenu {
-게    static public void secretMenu() {
+    static public void secretMenu() {
         Scanner sc = new Scanner(System.in);
 
         int M = sc.nextInt(); // 비밀 레시피 length
